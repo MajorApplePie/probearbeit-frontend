@@ -1,0 +1,9 @@
+{
+  "Nav": {
+    "Dashboard": "Dashboard",
+    "Details": "Bitcoin Details",
+    "Converter": "Bitcoin Converter",
+    "Chart": "Bitcoin Chart",
+    "Wallet": "My Bitcoin"
+  }
+}

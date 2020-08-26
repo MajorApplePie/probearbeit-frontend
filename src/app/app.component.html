@@ -1,0 +1,22 @@
+<div id="app">
+  <mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-drawer-container class="drawer-host">
+    <mat-drawer #drawer mode="side" class="nav-drawer" opened>
+      <mat-nav-list>
+        <a mat-list-item routerLink="dashboard">{{ 'Nav.Dashboard' | translate }}</a>
+        <a mat-list-item routerLink="details">{{ 'Nav.Details' | translate }}</a>
+        <a mat-list-item routerLink="converter">{{ 'Nav.Converter' | translate }}</a>
+        <a mat-list-item routerLink="chart">{{ 'Nav.Chart' | translate }}</a>
+        <a mat-list-item routerLink="wallet">{{ 'Nav.Wallet' | translate }}</a>
+      </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-container class="main-container">
+      Main
+    </mat-drawer-container>
+  </mat-drawer-container>
+
+</div>
