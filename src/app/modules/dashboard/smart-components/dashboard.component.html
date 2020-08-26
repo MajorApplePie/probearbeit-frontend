@@ -1,0 +1,33 @@
+<div class="loading-spinner" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<mat-card *ngIf="bitcoinData$ | async as bitcoinData">
+  <mat-card-title>{{ 'Dashboard.Title' | translate }}</mat-card-title>
+  <mat-card-content>
+    <mat-table [dataSource]="bitcoinData">
+
+      <!-- Currency Code -->
+      <ng-container matColumnDef="code">
+        <mat-header-cell *matHeaderCellDef>{{ 'Dashboard.CurrencyCode' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.currencyCode }}</mat-cell>
+      </ng-container>
+
+      <!-- Buy -->
+      <ng-container matColumnDef="buy">
+        <mat-header-cell *matHeaderCellDef>{{ 'Dashboard.Buy' | translate }}</mat-header-cell>
+            <!-- Wanted to use the currency pipe with the key here, but not all symbols are supported. -->
+        <mat-cell *matCellDef="let row"> {{row.buy | currency:row.currencyCode:row.symbol }}</mat-cell>
+      </ng-container>
+
+      <!-- Sell -->
+      <ng-container matColumnDef="sell">
+        <mat-header-cell *matHeaderCellDef>{{ 'Dashboard.Sell' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.sell | currency:row.currencyCode:row.symbol }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="['code', 'buy', 'sell']"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: ['code', 'buy', 'sell']"></mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>

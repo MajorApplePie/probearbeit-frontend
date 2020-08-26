@@ -5,5 +5,11 @@
     "Converter": "Bitcoin Converter",
     "Chart": "Bitcoin Chart",
     "Wallet": "My Bitcoin"
+  },
+  "Dashboard" : {
+    "Title": "Bitcoin value",
+    "CurrencyCode": "Currency Code",
+    "Buy": "Buy Value",
+    "Sell": "Sell Value"
   }
 }

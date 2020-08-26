@@ -5,7 +5,7 @@
     </button>
   </mat-toolbar>
   <mat-drawer-container class="drawer-host">
-    <mat-drawer #drawer mode="side" class="nav-drawer" opened>
+    <mat-drawer #drawer mode="side" class="nav-drawer">
       <mat-nav-list>
         <a mat-list-item routerLink="dashboard">{{ 'Nav.Dashboard' | translate }}</a>
         <a mat-list-item routerLink="details">{{ 'Nav.Details' | translate }}</a>
@@ -15,7 +15,7 @@
       </mat-nav-list>
     </mat-drawer>
     <mat-drawer-container class="main-container">
-      Main
+      <router-outlet></router-outlet>
     </mat-drawer-container>
   </mat-drawer-container>
 

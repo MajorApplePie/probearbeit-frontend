@@ -6,7 +6,8 @@ import { DashboardComponent } from './smart-components/dashboard.component';
 const routes: Routes = [{ path: '', component: DashboardComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes),
+  ],
   exports: [RouterModule]
 })
 export class DashboardRoutingModule { }

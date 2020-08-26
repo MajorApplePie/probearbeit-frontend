@@ -1,0 +1,17 @@
+:host.dashboard-component {
+  height: 100%;
+  width: 100%;
+  display: block;
+
+  .loading-spinner {
+    height: 100%;
+    width: 100%;
+    background: #2b2b2bba;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+}
