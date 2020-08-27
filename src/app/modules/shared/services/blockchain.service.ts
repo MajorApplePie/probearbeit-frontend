@@ -44,7 +44,7 @@ export class BlockchainService {
       .pipe(
         map(responses => ({
           marketcap: responses[0],
-          totalBtc: responses[1],
+          totalBtc: responses[1] / 100000000,
           transactionCount24h: responses[2],
           btcSent24h: responses[3],
           hashrate: responses[4],

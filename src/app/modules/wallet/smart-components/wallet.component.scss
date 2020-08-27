@@ -1,0 +1,9 @@
+.address-list {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  .creation-element {
+    grid-column: span 2;
+  }
+}

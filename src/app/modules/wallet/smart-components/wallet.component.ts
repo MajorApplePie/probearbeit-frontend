@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { WalletService } from '../../shared/services/wallet.service';
+import { Observable } from 'rxjs';
+import { Address } from '../../shared/models';
 
 @Component({
   selector: 'app-wallet',
@@ -6,10 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wallet.component.scss']
 })
 export class WalletComponent implements OnInit {
+  myAddresses$: Observable<Address[]>;
 
-  constructor() { }
+  creatingAddress = false;
+
+  constructor(private addressService: WalletService) { }
 
   ngOnInit(): void {
+    this.myAddresses$ = this.addressService.addresses$;
+
   }
 
+  onWalletCreated(address: Address) {
+    this.addressService.addAddress(address);
+
+    this.creatingAddress = false;
+  }
+
+  onDelete(address: Address) {
+    this.addressService.removeAddress(address);
+  }
+
+  startNewAddress() {
+    this.creatingAddress = true;
+  }
 }

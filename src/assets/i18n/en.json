@@ -26,5 +26,12 @@
     "Currency": "Currency",
     "Amount": "Amount",
     "InBtc": "BTC"
+  },
+  "Addresses": {
+    "Title": "My Addresses",
+    "Balance": "Balance",
+    "Address": "BTC Address",
+    "Name": "Address Name",
+    "StartNew": "New Address"
   }
 }

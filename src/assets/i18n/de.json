@@ -26,5 +26,13 @@
     "Currency": "Währung",
     "Amount": "Menge",
     "InBtc": "BTC"
+  },
+  "Addresses": {
+    "Title": "Meine Addressen",
+    "Balance": "Guthaben",
+    "Address": "BTC Adresse",
+    "Name": "Name der Addresse",
+    "StartNew": "Neue Addresse"
+
   }
 }

@@ -1,1 +1,10 @@
-<p>wallet works!</p>
+<div class="container">
+  <h1>{{'Addresses.Title' | translate}}</h1>
+  <button mat-button *ngIf="!creatingAddress" (click)="startNewAddress()">{{ 'Addresses.StartNew' | translate }}</button>
+
+  <div class="address-list">
+      <app-address class="creation-element" *ngIf="creatingAddress" (addressCreated)="onWalletCreated($event)"></app-address>
+
+    <app-address *ngFor="let address of myAddresses$ | async" [address]="address" (deleted)="onDelete($event)"></app-address>
+  </div>
+</div>
