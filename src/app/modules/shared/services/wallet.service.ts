@@ -21,14 +21,20 @@ export class WalletService {
 
   private loadFromStorage() {
     this.addresses = JSON.parse(localStorage.getItem('addresses')) || [];
-
+    console.log(this.addresses);
 
     const realAddresses = this.addresses.filter(w => w.address);
 
     if (realAddresses.length > 0) {
 
       this.getAddressValue(realAddresses.map(w => w.address))
-        .subscribe(response => this.updateAddressValues(realAddresses, response));
+        .subscribe(response => {
+          this.updateAddressValues(realAddresses, response);
+
+          this.saveAddresses();
+        });
+    } else {
+      this._addresses$.next(this.addresses);
     }
   }
 
@@ -39,7 +45,6 @@ export class WalletService {
         match.amount = address.final_balance / 100000000;
       }
     });
-    this.saveAddresses();
   }
 
   /**
