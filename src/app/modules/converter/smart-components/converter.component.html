@@ -9,7 +9,7 @@
     </mat-form-field>
 
     <mat-form-field >
-      <input matInput formControlName="amount" type="number" [placeholder]="'Converter.Amount' | translate">
+      <input matInput (wheel)="onWheel($event)" formControlName="amount" type="number" [placeholder]="'Converter.Amount' | translate">
     </mat-form-field>
 
     <span>

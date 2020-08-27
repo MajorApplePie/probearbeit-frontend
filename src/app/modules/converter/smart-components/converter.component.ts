@@ -40,6 +40,18 @@ export class ConverterComponent implements OnInit {
 
   }
 
+  // Maybe I'm daft, but the scroll increment only works after listening to the event.
+  // Might as well fix scrolling into negatives while I'm at it.
+  onWheel(event: WheelEvent) {
+    event.preventDefault();
+
+    if (event.deltaY < 0) {
+      this.inputForm.patchValue({ 'amount': this.amount + 1 });
+    } else if (this.amount > 0) {
+      this.inputForm.patchValue({ 'amount': this.amount - 1 });
+    }
+  }
+
   get amount(): number {
     return this.inputForm.get('amount').value;
   }
