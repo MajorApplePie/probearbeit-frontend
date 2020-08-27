@@ -19,5 +19,10 @@
     "24hrSent": "Sent in last 24 hours",
     "HashRate": "Hash Rate",
     "Difficulty": "Difficulty"
+  },
+  "Converter": {
+    "Currency": "Currency",
+    "Amount": "Amount",
+    "InBtc": "BTC"
   }
 }

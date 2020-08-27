@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -49,5 +49,18 @@ export class BlockchainService {
           difficulty: responses[5]
         }))
       );
+  }
+
+  /**
+   * Convert given amount of source currency into bitcoin.
+   * @param amount Amount to convert.
+   * @param currency Currency to convert.
+   */
+  convertToBtc(amount: number, currency: string): Observable<number> {
+    const params = new HttpParams()
+      .append('value', amount.toString())
+      .append('currency', currency);
+
+    return this.http.get<number>(`${this.endpoint}/tobtc`, { params });
   }
 }
