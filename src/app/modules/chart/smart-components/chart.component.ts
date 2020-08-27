@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlockchainService } from '../../shared/services/blockchain.service';
 import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import { Color } from 'ng2-charts';
 
 @Component({
   selector: 'app-chart',
@@ -11,13 +11,13 @@ import { Color, Label } from 'ng2-charts';
 export class ChartComponent implements OnInit {
   ready = false;
   chartData: ChartDataSets[];
-  chartLabels: Label[];
   lineChartColors: Color[] = [
     {
       borderColor: 'black'
     },
   ];
 
+  // Switch x axis to months
   options: ChartOptions = {
     scales: {
       xAxes: [
@@ -27,8 +27,7 @@ export class ChartComponent implements OnInit {
             unit: 'month'
           },
           ticks: {
-            autoSkip: true,
-            maxTicksLimit: 10
+            autoSkip: true
           }
         }
       ]
@@ -43,7 +42,7 @@ export class ChartComponent implements OnInit {
     this.btcService.getChartData()
       .subscribe(data => {
         this.chartData = [{
-          label: 't',
+          label: data.description,
           data: data.values
         }];
         this.ready = true;
