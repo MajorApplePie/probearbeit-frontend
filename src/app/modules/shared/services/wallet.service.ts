@@ -21,7 +21,6 @@ export class WalletService {
 
   private loadFromStorage() {
     this.addresses = JSON.parse(localStorage.getItem('addresses')) || [];
-    this._addresses$.next(this.addresses);
 
 
     const realAddresses = this.addresses.filter(w => w.address);
@@ -39,7 +38,8 @@ export class WalletService {
       if (match) {
         match.amount = address.final_balance / 100000000;
       }
-    })
+    });
+    this.saveAddresses();
   }
 
   /**
