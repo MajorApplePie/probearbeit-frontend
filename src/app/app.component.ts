@@ -23,11 +23,10 @@ export class AppComponent {
     translate.setDefaultLang('en');
     const userLang = this.getLangFromStorage();
     translate.use(userLang);
-    console.log(this.languageOptions.find(i => i.key === userLang));
+
     this.languageSelect = new FormControl(this.languageOptions.find(i => i.key === userLang));
     this.languageSelect.valueChanges
       .subscribe(value => {
-        console.log(value);
         this.changeLanguage(value.key);
       });
 

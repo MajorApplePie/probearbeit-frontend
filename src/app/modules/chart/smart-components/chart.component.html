@@ -1,1 +1,5 @@
-<p>chart works!</p>
+<div style="display: block;">
+  <canvas baseChart *ngIf="ready" [datasets]="chartData" [labels]="chartLabels" chartType="line"
+  [colors]="lineChartColors" [legend]="false" [plugins]="[]"
+  [options]="options"></canvas>
+</div>
