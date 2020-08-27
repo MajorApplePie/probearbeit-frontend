@@ -12,7 +12,8 @@
     "Title": "Bitcoin Wert",
     "CurrencyCode": "Währungscode",
     "Buy": "Einkaufpreis",
-    "Sell": "Verkaufpreis"
+    "Sell": "Verkaufpreis",
+    "MyBalance": "Mein Guthaben"
   },
   "Details": {
     "MarketCap": "Marktkapitalisierung",

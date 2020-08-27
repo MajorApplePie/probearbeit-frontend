@@ -1,8 +1,9 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { BlockchainService } from '../../shared/services/blockchain.service';
-import { Observable, timer } from 'rxjs';
+import { Observable, timer, merge } from 'rxjs';
 import { TickerEntry } from '../../shared/models';
 import { tap, delay, switchMap } from 'rxjs/operators';
+import { WalletService } from '../../shared/services/wallet.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,9 +13,11 @@ import { tap, delay, switchMap } from 'rxjs/operators';
 })
 export class DashboardComponent implements OnInit {
   bitcoinData$: Observable<TickerEntry[]>;
+  currentBtc: number;
+  currentBalance: number;
   loading = true;
 
-  constructor(private blockService: BlockchainService) { }
+  constructor(private blockService: BlockchainService, private addrService: WalletService) { }
 
   ngOnInit(): void {
 
@@ -24,10 +27,20 @@ export class DashboardComponent implements OnInit {
         .pipe(
           delay(100),
           tap(a => {
+
+            if (this.currentBtc) {
+              this.currentBalance = a.find(curr => curr.currencyCode === 'EUR').last * this.currentBtc;
+            }
+
             this.loading = false;
           })
         ))
     );
+
+    this.addrService.addresses$.subscribe(
+      addresses => this.currentBtc = addresses.reduce((p, c) => p += c.amount, 0)
+    );
+
   }
 
 }

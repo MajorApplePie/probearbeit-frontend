@@ -12,7 +12,8 @@
     "Title": "Bitcoin value",
     "CurrencyCode": "Currency Code",
     "Buy": "Buy Value",
-    "Sell": "Sell Value"
+    "Sell": "Sell Value",
+    "MyBalance": "My balance"
   },
   "Details": {
     "MarketCap": "Market Capitalization",
