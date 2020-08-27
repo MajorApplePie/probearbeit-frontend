@@ -1,0 +1,19 @@
+:host.details-component {
+  display: flex;
+  justify-content: center;
+}
+
+.details-list {
+  width: 500px;
+
+  mat-list-item:nth-child(2n) {
+    background: #c1c1c1;
+  }
+
+  .btc-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+}

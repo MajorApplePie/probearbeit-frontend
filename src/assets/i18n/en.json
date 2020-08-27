@@ -11,5 +11,13 @@
     "CurrencyCode": "Currency Code",
     "Buy": "Buy Value",
     "Sell": "Sell Value"
+  },
+  "Details": {
+    "MarketCap": "Market Capitalization",
+    "TotalBtc": "Total Bitcoins",
+    "24hrTransactions": "Transactions in last 24 hours",
+    "24hrSent": "Sent in last 24 hours",
+    "HashRate": "Hash Rate",
+    "Difficulty": "Difficulty"
   }
 }

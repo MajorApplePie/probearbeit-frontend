@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  blockchainEndpoint: 'https://blockchain.info/'
+  blockchainEndpoint: 'https://blockchain.info',
+  blockchainApiEndpoint: 'https://api.blockchain.info'
 };
 
 /*

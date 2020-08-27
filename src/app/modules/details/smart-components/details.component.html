@@ -1,1 +1,67 @@
-<p>details works!</p>
+<mat-list *ngIf="details$ | async as details" class="details-list">
+  <mat-list-item>
+    <div class="btc-item">
+      <span>
+        {{ 'Details.MarketCap' | translate }}
+      </span>
+      <span>
+        {{ details.marketcap | currency}}
+      </span>
+    </div>
+  </mat-list-item>
+
+  <mat-list-item>
+    <div class="btc-item">
+      <span>
+        {{ 'Details.TotalBtc' | translate }}
+      </span>
+      <span>
+        {{ details.totalBtc}}
+      </span>
+    </div>
+  </mat-list-item>
+
+  <mat-list-item>
+    <div class="btc-item">
+      <span>
+        {{ 'Details.24hrTransactions' | translate }}
+      </span>
+      <span>
+        {{ details.transactionCount24h}}
+      </span>
+    </div>
+  </mat-list-item>
+
+  <mat-list-item>
+    <div class="btc-item">
+      <span>
+        {{ 'Details.24hrSent' | translate }}
+      </span>
+      <span>
+        {{ details.btcSent24h}}
+      </span>
+    </div>
+  </mat-list-item>
+
+  <mat-list-item>
+    <div class="btc-item">
+      <span>
+        {{ 'Details.HashRate' | translate }}
+      </span>
+      <span>
+        {{ details.hashrate}}
+      </span>
+    </div>
+  </mat-list-item>
+
+  <mat-list-item>
+    <div class="btc-item">
+      <span>
+        {{ 'Details.Difficulty' | translate }}
+      </span>
+      <span>
+        {{ details.difficulty}}
+      </span>
+    </div>
+  </mat-list-item>
+</mat-list>
