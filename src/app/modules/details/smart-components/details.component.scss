@@ -17,3 +17,13 @@
   }
 
 }
+
+
+/* When using table */
+table {
+  border-collapse: collapse;
+
+  tr:nth-child(2n) {
+    background: #c1c1c1;
+  }
+}

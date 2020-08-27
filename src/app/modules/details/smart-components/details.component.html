@@ -65,3 +65,32 @@
     </div>
   </mat-list-item>
 </mat-list>
+<!--
+  Could use a table or mat table, but I like the default style of list here.
+
+<table *ngIf="details$ | async as details" class="details-list">
+  <tr>
+    <td>{{ 'Details.MarketCap' | translate }}</td>
+    <td>{{ details.totalBtc | currency}}</td>
+  </tr>
+  <tr>
+    <td>{{ 'Details.TotalBtc' | translate }}</td>
+    <td>{{ details.marketcap}}</td>
+  </tr>
+  <tr>
+    <td>{{ 'Details.24hrTransactions' | translate }}</td>
+    <td>{{ details.transactionCount24h}}</td>
+  </tr>
+  <tr>
+    <td>{{ 'Details.24hrSent' | translate }}</td>
+    <td>{{ details.btcSent24h}}</td>
+  </tr>
+  <tr>
+    <td>{{ 'Details.HashRate' | translate}}</td>
+    <td>{{ details.hashrate}}</td>
+  </tr>
+  <tr>
+    <td>{{ 'Details.Difficulty' | translate }}</td>
+    <td>{{ details.difficulty}}</td>
+  </tr>
+</table> -->
