@@ -1,9 +1,20 @@
-.address-list {
-  display: grid;
-  gap: 5px;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+.container {
+  padding: 5px;
+  box-sizing: border-box;
 
-  .creation-element {
-    grid-column: span 2;
+  .address-list {
+     // this would probably work better with flex, but I'm not dragging the flex lib into this after pretty much being done.
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+
+    .creation-element {
+      grid-column: span 2;
+    }
+
+    app-address {
+      height: 100%;
+    }
   }
+
 }

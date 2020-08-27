@@ -1,25 +1,26 @@
 <mat-card>
-  <mat-card-title>
-    <mat-form-field *ngIf="creation; else staticTitle">
-      <input matInput type="text" [formControl]="nameControl" [placeholder]="'Addresses.Name' | translate">
-    </mat-form-field>
-    <ng-template #staticTitle>
-      <span>{{ address.name }}</span>
-    </ng-template>
+  <mat-card-title *ngIf="!creation">
+    <span>{{ address.name }}</span>
   </mat-card-title>
   <mat-card-content>
     <ng-container *ngIf="creation; else existing">
       <mat-form-field>
-        <input matInput [formControl]="balance" type='number' [placeholder]="'Addresses.Balance' | translate">
+        <input matInput type="text" [formControl]="nameControl" [placeholder]="'Addresses.Name' | translate">
       </mat-form-field>
-      <mat-form-field>
-        <input matInput [formControl]="btcAddress" type="text" [placeholder]="'Addresses.Address' | translate">
-      </mat-form-field>
+      <div class="creation-container">
+        <mat-form-field>
+          <input matInput [formControl]="balance" type='number' [placeholder]="'Addresses.Balance' | translate">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [formControl]="btcAddress" type="text" [placeholder]="'Addresses.Address' | translate">
+        </mat-form-field>
+      </div>
     </ng-container>
 
     <ng-template #existing>
       <ng-container *ngIf="realAddress; else fakeAddress">
-        {{address.amount}}
+        <p>BTC {{address.amount}}</p>
+        <p>{{ 'Addresses.Address' | translate}} {{address.address}}</p>
       </ng-container>
       <ng-template #fakeAddress>
         <mat-form-field>
@@ -29,7 +30,11 @@
     </ng-template>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button (click)="save()"><mat-icon>save</mat-icon></button>
-    <button *ngIf="!realAddress && !creation" mat-icon-button (click)="delete()"><mat-icon>delete</mat-icon></button>
+    <button mat-icon-button (click)="save()">
+      <mat-icon>save</mat-icon>
+    </button>
+    <button *ngIf="!realAddress && !creation" mat-icon-button (click)="delete()">
+      <mat-icon>delete</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>

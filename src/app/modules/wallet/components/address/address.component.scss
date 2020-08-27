@@ -1,0 +1,10 @@
+mat-card {
+  height: 100%;
+}
+
+.creation-container {
+  display: flex;
+  > *:nth-child(2n) {
+    margin-left: 5px;
+  }
+}
