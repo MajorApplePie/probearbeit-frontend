@@ -1,0 +1,30 @@
+{
+  "German": "Deutsch",
+  "English": "Englisch",
+  "Nav": {
+    "Dashboard": "Dashboard",
+    "Details": "Bitcoin Details",
+    "Converter": "Bitcoin Umrechner",
+    "Chart": "Bitcoin Diagramm",
+    "Wallet": "Meine Bitcoin"
+  },
+  "Dashboard" : {
+    "Title": "Bitcoin Wert",
+    "CurrencyCode": "Währungscode",
+    "Buy": "Einkaufpreis",
+    "Sell": "Verkaufpreis"
+  },
+  "Details": {
+    "MarketCap": "Marktkapitalisierung",
+    "TotalBtc": "Anzahl aller Bitcoins",
+    "24hrTransactions": "Anzahl der Transaktionen in 24 Stunden",
+    "24hrSent": "Anzahl gesendeter Bitcoin in 24 Stunden",
+    "HashRate": "Hashrate",
+    "Difficulty": "Schwierigkeitsgrad"
+  },
+  "Converter": {
+    "Currency": "Währung",
+    "Amount": "Menge",
+    "InBtc": "BTC"
+  }
+}

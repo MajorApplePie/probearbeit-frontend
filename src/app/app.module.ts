@@ -10,6 +10,7 @@ import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from './modules/shared/shared.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -22,6 +23,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     SharedModule,
     BrowserModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     MatToolbarModule,

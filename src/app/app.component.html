@@ -1,8 +1,16 @@
 <div id="app">
   <mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+      (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
+    <mat-form-field>
+      <mat-select [formControl]="languageSelect">
+        <mat-option *ngFor="let option of languageOptions" [value]="option">
+          {{ option.name | translate}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-toolbar>
   <mat-drawer-container class="drawer-host">
     <mat-drawer #drawer mode="side" class="nav-drawer">
