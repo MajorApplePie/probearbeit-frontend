@@ -34,5 +34,12 @@
     "Address": "BTC Address",
     "Name": "Address Name",
     "StartNew": "New Address"
+  },
+  "Chart": {
+    "Type": "Data Type",
+    "MarketCap":"Market Capitalization",
+    "Price": "Price",
+    "TxSec": "Transactions per second",
+    "HashRate": "Hash Rate"
   }
 }

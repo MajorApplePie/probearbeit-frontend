@@ -35,5 +35,12 @@
     "Name": "Name der Addresse",
     "StartNew": "Neue Addresse"
 
+  },
+  "Chart": {
+    "Type": "Datentyp",
+    "MarketCap":"Marktkapitalisierung",
+    "Price": "Preis",
+    "TxSec": "Transaktionen pro Sekunde",
+    "HashRate": "Hashrate"
   }
 }

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BlockchainService } from '../../shared/services/blockchain.service';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color } from 'ng2-charts';
+import { ChartType } from '../../shared/models';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, mapTo, switchMap, tap, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chart',
@@ -9,8 +13,7 @@ import { Color } from 'ng2-charts';
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit {
-  ready = false;
-  chartData: ChartDataSets[];
+  chartData$: Observable<ChartDataSets[]>;
   lineChartColors: Color[] = [
     {
       borderColor: 'black'
@@ -34,19 +37,36 @@ export class ChartComponent implements OnInit {
     }
   }
 
+  availableTypes: ChartType[];
+  selectedType: FormControl;
 
 
-  constructor(private btcService: BlockchainService) { }
+  constructor(private btcService: BlockchainService) {
+    this.availableTypes = this.btcService.chartTypes;
+    this.selectedType = new FormControl(this.availableTypes[0]);
+  }
 
   ngOnInit(): void {
-    this.btcService.getChartData()
-      .subscribe(data => {
-        this.chartData = [{
-          label: data.description,
-          data: data.values
-        }];
-        this.ready = true;
-      });
+    this.chartData$ = this.selectedType.valueChanges
+      .pipe(
+        startWith(''),
+        switchMap(_ => this.loadData())
+      );
+  }
+
+  private loadData(): Observable<ChartDataSets[]> {
+    return this.btcService.getChartData(this.selectedType.value)
+      .pipe(
+        map(response => {
+          console.log('a');
+          return [
+            {
+              label: response.description,
+              data: response.values
+            }
+          ]
+        })
+      )
   }
 
 }

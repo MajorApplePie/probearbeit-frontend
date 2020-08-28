@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable, forkJoin, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { TickerEntry, BtcDetails, ChartData } from '../models';
+import { TickerEntry, BtcDetails, ChartData, ChartType } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,36 @@ import { TickerEntry, BtcDetails, ChartData } from '../models';
 export class BlockchainService {
   private endpoint: string;
   private chartEndpoint: string;
+  private readonly _chartTypes: ChartType[] = [
+    {
+      name: 'MarketCap',
+      key: 'mktcap'
+    },
+    {
+      name: 'Price',
+      key: 'price'
+    }, {
+      name: 'TxSec',
+      key: 'txSec'
+    }, {
+      name: 'HashRate',
+      key: 'hashRate'
+    }
+  ];
+
+
+    // this could be merged into the type directly, but it's information that's not needed for ui.
+    private readonly typeMappings = new Map<string, string>([
+      ['price', 'market-price'],
+      ['mktcap', 'market-cap'],
+      ['txSec', 'transactions-per-second'],
+      ['hashRate', 'hash-rate']
+    ]);
+
+  get chartTypes(): ChartType[] {
+    return this._chartTypes.map(x => x);
+  }
+
   constructor(private http: HttpClient) {
     this.endpoint = environment.blockchainEndpoint;
     this.chartEndpoint = environment.blockchainApiEndpoint + '/charts';
@@ -66,14 +96,26 @@ export class BlockchainService {
     return this.http.get<number>(`${this.endpoint}/tobtc`, { params });
   }
 
-  getChartData(timespan?: number): Observable<ChartData> {
+
+  /**
+   * Loads chart data for given type.
+   * @param type type of chart to load
+   * @param timespan Range to load, must be in format numberUnit e.g. 1weeks, 3months
+   * @param start First dat to get.
+   */
+  getChartData(type: ChartType, timespan?: string, start?: Date): Observable<ChartData> {
     let params = new HttpParams().append('cors', 'true');
 
+
     if (timespan) {
-      params = params.append('timespan', timespan.toString());
+      params = params.append('timespan', timespan);
     }
 
-    return this.http.get<any>(`${this.chartEndpoint}/market-price`, { params })
+    if (start) {
+      params = params.append('start', start.toUTCString());
+    }
+
+    return this.http.get<any>(`${this.chartEndpoint}/${this.typeMappings.get(type.key)}`, { params })
       .pipe(map(response => {
         response.values.forEach(v => {
           v.x = new Date(v.x * 1000);

@@ -1,5 +1,18 @@
-<div class="chart">
-  <canvas height="100%" baseChart *ngIf="ready" [datasets]="chartData" chartType="line"
-  [colors]="lineChartColors" [legend]="false"
-  [options]="options"></canvas>
+<div class="container">
+  <div class="filters">
+    <mat-form-field>
+      <mat-select [formControl]="selectedType" [placeholder]="'Chart.Type' | translate">
+        <mat-option *ngFor="let option of availableTypes" [value]="option">
+          {{ 'Chart.' + option.name | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="chart">
+    <canvas height="100%" baseChart *ngIf="chartData$ | async as chartData" [datasets]="chartData" chartType="line"
+    [colors]="lineChartColors" [legend]="false"
+    [options]="options"></canvas>
+  </div>
+
 </div>
