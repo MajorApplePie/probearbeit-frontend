@@ -14,21 +14,15 @@
 
   <!-- Not super happy about this design, ideally I'd make a compact view where you select which currencies you want to see. -->
   <mat-card class="table" *ngIf="filteredData">
-    <mat-card-title>{{ 'Dashboard.Title' | translate }}
+    <mat-card-title class="table-title">{{ 'Dashboard.Title' | translate }}
       <button mat-icon-button [matMenuTriggerFor]="filterMenu">
         <mat-icon>filter_list</mat-icon>
       </button>
+
     </mat-card-title>
     <mat-card-content>
 
-      <mat-menu #filterMenu="matMenu">
-        <mat-selection-list [formControl]="selectedCurrencies">
-          <mat-list-option *ngFor="let code of bitcoinData" (click)="$event.stopPropagation()"
-            [value]="code.currencyCode">
-            {{ code.currencyCode }}
-          </mat-list-option>
-        </mat-selection-list>
-      </mat-menu>
+
       <mat-table [dataSource]="dataSource">
 
         <!-- Currency Code -->
@@ -57,3 +51,12 @@
   </mat-card>
 
 </div>
+
+<mat-menu #filterMenu="matMenu">
+  <mat-selection-list [formControl]="selectedCurrencies">
+    <mat-list-option *ngFor="let code of bitcoinData" (click)="$event.stopPropagation()"
+      [value]="code.currencyCode">
+      {{ code.currencyCode }}
+    </mat-list-option>
+  </mat-selection-list>
+</mat-menu>
