@@ -27,6 +27,13 @@
   gap: 10px;
   grid-template-areas: "main sidebar";
 
+
+  mat-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .balance {
     grid-area: sidebar;
   }

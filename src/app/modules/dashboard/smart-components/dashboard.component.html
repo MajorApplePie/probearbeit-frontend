@@ -1,4 +1,3 @@
-
 <!-- I'll leave this one out in the rest as the api is way to fast for it to not look weird without an artificial delay. -->
 <div class="loading-spinner" *ngIf="loading">
   <mat-spinner></mat-spinner>
@@ -14,10 +13,23 @@
 
 
   <!-- Not super happy about this design, ideally I'd make a compact view where you select which currencies you want to see. -->
-  <mat-card class="table" *ngIf="bitcoinData$ | async as bitcoinData">
-    <mat-card-title>{{ 'Dashboard.Title' | translate }}</mat-card-title>
+  <mat-card class="table" *ngIf="filteredData">
+    <mat-card-title>{{ 'Dashboard.Title' | translate }}
+      <button mat-icon-button [matMenuTriggerFor]="filterMenu">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+    </mat-card-title>
     <mat-card-content>
-      <mat-table [dataSource]="bitcoinData">
+
+      <mat-menu #filterMenu="matMenu">
+        <mat-selection-list [formControl]="selectedCurrencies">
+          <mat-list-option *ngFor="let code of bitcoinData" (click)="$event.stopPropagation()"
+            [value]="code.currencyCode">
+            {{ code.currencyCode }}
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-menu>
+      <mat-table [dataSource]="dataSource">
 
         <!-- Currency Code -->
         <ng-container matColumnDef="code">
@@ -28,7 +40,7 @@
         <!-- Buy -->
         <ng-container matColumnDef="buy">
           <mat-header-cell *matHeaderCellDef>{{ 'Dashboard.Buy' | translate }}</mat-header-cell>
-              <!-- Wanted to use the symbols from the currency pipe with the key here, but not all symbols are supported. -->
+          <!-- Wanted to use the symbols from the currency pipe with the key here, but not all symbols are supported. -->
           <mat-cell *matCellDef="let row"> {{row.buy | currency:row.currencyCode:row.symbol }}</mat-cell>
         </ng-container>
 
