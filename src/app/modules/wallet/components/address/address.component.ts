@@ -1,14 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Address } from 'src/app/modules/shared/models';
 import { FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-address',
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss']
 })
-export class AddressComponent implements OnInit {
+export class AddressComponent implements OnInit, OnDestroy {
 
   @Input() address: Address;
   creation = false;
@@ -21,15 +22,38 @@ export class AddressComponent implements OnInit {
   @Output() addressCreated = new EventEmitter<Address>();
   @Output() addressChanged = new EventEmitter<AddressChanged>();
   @Output() deleted = new EventEmitter<Address>();
+
+  subs: Subscription[] = [];
+
   constructor() {
     this.nameControl = new FormControl('', [Validators.required]);
     this.btcAddress = new FormControl(null, [addressValidator]);
     this.balance = new FormControl(null, [Validators.min(0)]);
   }
+  ngOnDestroy(): void {
+    this.subs.forEach(x => {
+      if (!x.closed) {
+        x.unsubscribe();
+      }
+    });
+  }
 
   ngOnInit(): void {
     if (!this.address) {
       this.creation = true;
+
+      // disable balance input if a real address is entered;
+      this.subs.push(this.btcAddress.valueChanges.subscribe(
+        _ => {
+          if (this.btcAddress.valid) {
+            this.balance.disable();
+          } else {
+            this.balance.enable();
+          }
+        }
+      ));
+
+
     } else if (this.address.address) {
       this.realAddress = true;
     } else {
