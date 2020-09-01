@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { BlockchainService } from '../../shared/services/blockchain.service';
 import { Observable, timer, merge, Subscription } from 'rxjs';
 import { TickerEntry } from '../../shared/models';
@@ -13,7 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./dashboard.component.scss'],
   host: { 'class': 'dashboard-component' }
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   bitcoinData: TickerEntry[];
   filteredData: TickerEntry[];
   currentBtc: number;
@@ -58,6 +58,14 @@ export class DashboardComponent implements OnInit {
     );
 
     this.dataSource = new MatTableDataSource();
+  }
+
+  ngOnDestroy(): void {
+    this.updateSubs.forEach(x => {
+      if (!x.closed) {
+        x.unsubscribe();
+      }
+    });
   }
 
   updateBtc(updated: TickerEntry[]) {
