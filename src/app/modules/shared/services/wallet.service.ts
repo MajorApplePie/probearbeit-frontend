@@ -21,7 +21,6 @@ export class WalletService {
 
   private loadFromStorage() {
     this.addresses = JSON.parse(localStorage.getItem('addresses')) || [];
-    console.log(this.addresses);
 
     const realAddresses = this.addresses.filter(w => w.address);
 

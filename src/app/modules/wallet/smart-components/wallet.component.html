@@ -5,6 +5,6 @@
   <div class="address-list">
       <app-address class="creation-element" *ngIf="creatingAddress" (addressCreated)="onWalletCreated($event)"></app-address>
 
-    <app-address *ngFor="let address of myAddresses$ | async" [address]="address" (deleted)="onDelete($event)"></app-address>
+    <app-address *ngFor="let address of myAddresses$ | async" [address]="address" (deleted)="onDelete($event)" (addressChanged)="addressChanged($event)"></app-address>
   </div>
 </div>

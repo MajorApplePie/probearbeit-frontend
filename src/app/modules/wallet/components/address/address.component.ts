@@ -56,7 +56,10 @@ export class AddressComponent implements OnInit {
 
   // update existing address.
   update() {
-
+    this.addressChanged.emit({
+      address: this.address,
+      value: this.balance.value
+    });
   }
 
   delete() {

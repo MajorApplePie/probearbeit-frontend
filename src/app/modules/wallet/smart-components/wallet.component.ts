@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WalletService } from '../../shared/services/wallet.service';
 import { Observable } from 'rxjs';
 import { Address } from '../../shared/models';
+import { AddressChanged } from '../components/address/address.component';
 
 @Component({
   selector: 'app-wallet',
@@ -32,5 +33,9 @@ export class WalletComponent implements OnInit {
 
   startNewAddress() {
     this.creatingAddress = true;
+  }
+
+  addressChanged(event: AddressChanged) {
+    this.addressService.changeAmount(event.address, event.value);
   }
 }
