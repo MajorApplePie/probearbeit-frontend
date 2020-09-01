@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Address } from 'src/app/modules/shared/models';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-address',
@@ -22,9 +23,9 @@ export class AddressComponent implements OnInit {
   @Output() deleted = new EventEmitter<Address>();
   constructor() {
     this.nameControl = new FormControl('', [Validators.required]);
-    this.btcAddress = new FormControl();
+    this.btcAddress = new FormControl(null, [addressValidator]);
     this.balance = new FormControl(null, [Validators.min(0)]);
-   }
+  }
 
   ngOnInit(): void {
     if (!this.address) {
@@ -66,6 +67,8 @@ export class AddressComponent implements OnInit {
     this.deleted.emit(this.address);
   }
 
+
+
 }
 
 
@@ -73,3 +76,9 @@ export interface AddressChanged {
   address: Address;
   value: number;
 }
+
+function addressValidator(control: AbstractControl): { [key: string]: any } | null {
+  console.log(environment.bitcoinRegex.test(control.value));
+  return environment.bitcoinRegex.test(control.value) ? null : { invalid: { value: control.value } };
+}
+

@@ -33,7 +33,8 @@
     "Balance": "Guthaben",
     "Address": "BTC Adresse",
     "Name": "Name der Addresse",
-    "StartNew": "Neue Addresse"
+    "StartNew": "Neue Addresse",
+    "InvalidAddress": "Keine korrekte BTC Addresse"
 
   },
   "Chart": {

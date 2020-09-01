@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   blockchainEndpoint: 'https://blockchain.info',
-  blockchainApiEndpoint: 'https://api.blockchain.info'
+  blockchainApiEndpoint: 'https://api.blockchain.info',
+  bitcoinRegex: /^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$/
 };
 
 /*

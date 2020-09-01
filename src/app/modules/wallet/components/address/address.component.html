@@ -13,6 +13,7 @@
         </mat-form-field>
         <mat-form-field>
           <input matInput [formControl]="btcAddress" type="text" [placeholder]="'Addresses.Address' | translate">
+          <mat-error *ngIf="btcAddress.errors && btcAddress.errors.invalid">{{ 'Addresses.InvalidAddress' | translate}}</mat-error>
         </mat-form-field>
       </div>
     </ng-container>

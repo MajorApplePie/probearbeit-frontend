@@ -33,7 +33,8 @@
     "Balance": "Balance",
     "Address": "BTC Address",
     "Name": "Address Name",
-    "StartNew": "New Address"
+    "StartNew": "New Address",
+    "InvalidAddress": "Not a valid BTC Address"
   },
   "Chart": {
     "Type": "Data Type",
