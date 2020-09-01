@@ -46,14 +46,18 @@ export class BlockchainService {
     this.chartEndpoint = environment.blockchainApiEndpoint + '/charts';
   }
 
+  /**
+   * Get latest bitcoin value for available currencies.
+   */
   getLatest(): Observable<TickerEntry[]> {
 
     return this.http.get(`${this.endpoint}/ticker`)
       .pipe(
-        map(response => Object.entries(response).map(e => ({
+        map<object, TickerEntry[]>(response => Object.entries(response).map(e => ({
           currencyCode: e[0],
           ...e[1]
-        })))
+        })).sort((a: TickerEntry, b: TickerEntry) => a.currencyCode.localeCompare(b.currencyCode))
+        )
       );
   }
 
@@ -74,7 +78,7 @@ export class BlockchainService {
       .pipe(
         map(responses => ({
           marketcap: responses[0],
-          totalBtc: responses[1] / 100000000,
+          totalBtc: responses[1] / 100000000, // Hope this is correct, I suspect they use large integers to not get problems with float precision.
           transactionCount24h: responses[2],
           btcSent24h: responses[3],
           hashrate: responses[4],
