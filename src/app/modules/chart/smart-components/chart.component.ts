@@ -58,7 +58,6 @@ export class ChartComponent implements OnInit {
     return this.btcService.getChartData(this.selectedType.value)
       .pipe(
         map(response => {
-          console.log('a');
           return [
             {
               label: response.description,
