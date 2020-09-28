@@ -22,7 +22,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   imports: [
     SharedModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,

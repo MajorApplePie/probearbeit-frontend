@@ -1,0 +1,30 @@
+service: probe
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  memorySize: 128
+  timeout: 10
+  stage: production
+  region: eu-central-1
+
+package:
+  exclude:
+   - src/**
+   - node_modules/**
+   - firebug-lite/**
+   - e2e/**
+   - coverage/**
+   - '!node_modules/aws-serverless-express/**'
+
+custom:
+  apigwBinary:
+    types:
+      - '*/*'
+
+functions:
+  api:
+    handler: lambda.probe
+    events:
+      - http: ANY {proxy+}
+      - http: ANY /
